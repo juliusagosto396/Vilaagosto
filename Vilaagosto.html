@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tobinho Agosto | Omnitrix Links</title>
+  <meta name="theme-color" content="#06120a" />
+
+  <style>
+    :root{
+      --bg:#050a06;
+      --panel:rgba(8,18,10,.75);
+      --border:rgba(34,197,94,.35);
+      --text:#e7ffee;
+      --muted:#a7f3d0;
+      --glow:rgba(34,197,94,.4);
+      --radius:22px;
+      --shadow:0 18px 60px rgba(0,0,0,.6);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto,Arial;
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:18px;
+      background:
+        radial-gradient(1000px 600px at 20% 0%, rgba(34,197,94,.25), transparent 60%),
+        radial-gradient(900px 600px at 80% 20%, rgba(16,185,129,.15), transparent 60%),
+        linear-gradient(180deg,#020502,var(--bg));
+    }
+
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background:
+        linear-gradient(to right, rgba(34,197,94,.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(34,197,94,.06) 1px, transparent 1px);
+      background-size:36px 36px;
+      opacity:.2;
+      pointer-events:none;
+    }
+
+    .card{
+      width:100%;
+      max-width:680px;
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    header{
+      padding:18px;
+      border-bottom:1px solid var(--border);
+      background:var(--panel);
+    }
+
+    .title{display:flex;align-items:center;gap:12px}
+    .avatar{
+      width:56px;height:56px;border-radius:18px;
+      display:grid;place-items:center;
+      background:#020a04;
+      border:1px solid var(--border);
+      box-shadow:0 0 40px var(--glow);
+      font-size:26px;
+    }
+
+    h1{margin:0;font-size:18px}
+    .sub{
+      margin-top:6px;
+      font-size:13px;
+      color:var(--muted);
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .badge{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#020a04;
+      font-size:12px;
+    }
+
+    main{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .stats{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:10px;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .stats button{
+      background:#020a04;
+      border:1px solid var(--border);
+      color:var(--text);
+      border-radius:999px;
+      padding:7px 12px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .section{
+      border-top:1px dashed rgba(34,197,94,.25);
+      padding-top:12px;
+    }
+
+    .section-title{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+
+    .tile{
+      border:1px solid var(--border);
+      border-radius:18px;
+      background:rgba(8,18,10,.6);
+      margin-bottom:10px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .tile::before{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, transparent 0%, rgba(34,197,94,.12) 45%, rgba(34,197,94,.05) 60%, transparent 100%);
+      transform: translateX(-65%);
+      transition: transform .45s ease;
+      pointer-events:none;
+    }
+    .tile:hover::before{ transform: translateX(35%); }
+
+    .tile-top{
+      padding:14px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .left{display:flex;gap:12px;align-items:center;min-width:0}
+    .icon{
+      width:46px;height:46px;border-radius:16px;
+      display:grid;place-items:center;
+      background:#020a04;
+      border:1px solid var(--border);
+      box-shadow:0 0 25px var(--glow);
+      font-size:18px;
+      flex:0 0 auto;
+    }
+
+    .labels{min-width:0}
+    .name{font-weight:950;font-size:15px;line-height:1.15}
+    .hint{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      max-width:420px;
+      margin-top:2px;
+    }
+
+    .count{
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+      flex:0 0 auto;
+    }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      padding:0 14px 14px;
+      flex-wrap:wrap;
+    }
+
+    .actions a,
+    .actions button{
+      flex:1 1 160px;
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:#020a04;
+      color:var(--text);
+      font-weight:900;
+      cursor:pointer;
+      text-align:center;
+      text-decoration:none;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      user-select:none;
+    }
+
+    .actions a:hover,
+    .actions button:hover{
+      background:#031107;
+      border-color: rgba(34,197,94,.55);
+    }
+    .actions a:active,
+    .actions button:active{transform: scale(.985)}
+
+    footer{
+      padding:14px;
+      border-top:1px solid var(--border);
+      font-size:12px;
+      color:var(--muted);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      gap:10px;
+      background:rgba(8,18,10,.55);
+    }
+
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:#020a04;
+      white-space:nowrap;
+    }
+
+    .toast{
+      position:fixed;
+      bottom:18px;
+      left:50%;
+      transform:translateX(-50%) translateY(6px);
+      background:#020a04;
+      border:1px solid var(--border);
+      color:var(--text);
+      padding:9px 14px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      opacity:0;
+      pointer-events:none;
+      transition:.2s;
+      box-shadow:0 18px 50px rgba(0,0,0,.55);
+    }
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <header>
+      <div class="title">
+        <div class="avatar">👽</div>
+        <div>
+          <h1>Tobinho Agosto</h1>
+          <div class="sub">
+            <span class="badge">💚 Omnitrix</span>
+            <span class="badge">🕹️ Gamer</span>
+            <span class="badge">🌸 Otaku</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="stats">
+        <div>📊 Total de cliques: <b id="total">0</b></div>
+        <button id="reset" type="button">♻️ Zerar</button>
+      </div>
+
+      <div class="section">
+        <div class="section-title">YouTube</div>
+
+        <div class="tile" data-id="yt_principal" data-url="https://youtube.com/@tobinhoagosto?si=eCbNWZiaqOTQh9gb">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">▶️</div>
+              <div class="labels">
+                <div class="name">YouTube Principal</div>
+                <div class="hint">https://youtube.com/@tobinhoagosto</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://youtube.com/@tobinhoagosto?si=eCbNWZiaqOTQh9gb" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="yt_secundario" data-url="https://youtube.com/@tobinhoagosto2?si=wSJL8iWKi8zLpRHp">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🎮</div>
+              <div class="labels">
+                <div class="name">YouTube Secundário</div>
+                <div class="hint">https://youtube.com/@tobinhoagosto2</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://youtube.com/@tobinhoagosto2?si=wSJL8iWKi8zLpRHp" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="yt_internacional" data-url="https://youtube.com/@tobinhoagostointernacional?si=05SVcQi7kHLQIVEY">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🌍</div>
+              <div class="labels">
+                <div class="name">YouTube Internacional</div>
+                <div class="hint">https://youtube.com/@tobinhoagostointernacional</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://youtube.com/@tobinhoagostointernacional?si=05SVcQi7kHLQIVEY" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Redes</div>
+
+        <div class="tile" data-id="twitch" data-url="https://m.twitch.tv/juliusagosto/home">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🟣</div>
+              <div class="labels">
+                <div class="name">Twitch</div>
+                <div class="hint">https://m.twitch.tv/juliusagosto/home</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://m.twitch.tv/juliusagosto/home" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="instagram" data-url="https://www.instagram.com/tobinhoagosto1983?igsh=dGhncWNwemdyazBw">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">📸</div>
+              <div class="labels">
+                <div class="name">Instagram</div>
+                <div class="hint">https://www.instagram.com/tobinhoagosto1983</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://www.instagram.com/tobinhoagosto1983?igsh=dGhncWNwemdyazBw" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="tiktok_pessoal" data-url="https://tiktok.com/@umgurichamadojulio">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🎵</div>
+              <div class="labels">
+                <div class="name">TikTok (Pessoal)</div>
+                <div class="hint">https://tiktok.com/@umgurichamadojulio</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://tiktok.com/@umgurichamadojulio" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="tiktok_canal" data-url="https://tiktok.com/@tobinhoagosto1983">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🚀</div>
+              <div class="labels">
+                <div class="name">TikTok (Do Canal)</div>
+                <div class="hint">https://tiktok.com/@tobinhoagosto1983</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://tiktok.com/@tobinhoagosto1983" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="facebook" data-url="https://www.facebook.com/share/1Pqmt2AazV/">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">📘</div>
+              <div class="labels">
+                <div class="name">Facebook</div>
+                <div class="hint">https://www.facebook.com/share/1Pqmt2AazV/</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://www.facebook.com/share/1Pqmt2AazV/" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Discord</div>
+
+        <div class="tile" data-id="discord_meu" data-url="https://discord.gg/2mbkmKy5">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">💙</div>
+              <div class="labels">
+                <div class="name">Discord (Meu convite)</div>
+                <div class="hint">https://discord.gg/2mbkmKy5</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://discord.gg/2mbkmKy5" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+
+        <div class="tile" data-id="discord_servidor" data-url="https://discord.gg/wFVnRtAMw">
+          <div class="tile-top">
+            <div class="left">
+              <div class="icon">🏰</div>
+              <div class="labels">
+                <div class="name">Servidor do Discord</div>
+                <div class="hint">https://discord.gg/wFVnRtAMw</div>
+              </div>
+            </div>
+            <div class="count">Cliques: <b>0</b></div>
+          </div>
+          <div class="actions">
+            <a href="https://discord.gg/wFVnRtAMw" target="_blank" rel="noopener">🚀 Abrir</a>
+            <button type="button">📋 Copiar link</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <span class="pill">Omnitrix Online 💚</span>
+      <span class="pill">📅 <span id="date"></span></span>
+      <span class="pill">📦 Salva no celular</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast">Copiado ✅</div>
+
+  <script>
+    const KEY = "omni_clicks_v1";
+    const data = JSON.parse(localStorage.getItem(KEY) || '{"total":0,"items":{}}');
+
+    const totalEl = document.getElementById("total");
+    const tiles = document.querySelectorAll(".tile");
+    const toast = document.getElementById("toast");
+
+    function save(){ localStorage.setItem(KEY, JSON.stringify(data)); }
+
+    function render(){
+      totalEl.textContent = String(data.total || 0);
+      tiles.forEach(tile => {
+        const id = tile.dataset.id;
+        const c = (data.items && data.items[id]) ? data.items[id] : 0;
+        tile.querySelector(".count b").textContent = String(c);
+      });
+    }
+
+    function showToast(text){
+      toast.textContent = text;
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove("show"), 900);
+    }
+
+    tiles.forEach(tile => {
+      const id = tile.dataset.id;
+      const url = tile.dataset.url;
+
+      const openBtn = tile.querySelector(".actions a");
+      const copyBtn = tile.querySelector(".actions button");
+
+      openBtn.addEventListener("click", () => {
+        data.total = (data.total || 0) + 1;
+        data.items = data.items || {};
+        data.items[id] = (data.items[id] || 0) + 1;
+        save(); render();
+      });
+
+      copyBtn.addEventListener("click", async () => {
+        try{
+          await navigator.clipboard.writeText(url);
+        }catch(e){
+          const t = document.createElement("textarea");
+          t.value = url;
+          document.body.appendChild(t);
+          t.select();
+          document.execCommand("copy");
+          t.remove();
+        }
+        showToast("Link copiado ✅");
+      });
+    });
+
+    document.getElementById("reset").addEventListener("click", () => {
+      data.total = 0;
+      data.items = {};
+      save(); render();
+      showToast("Zerado ♻️");
+    });
+
+    document.getElementById("date").textContent = new Date().toLocaleDateString("pt-BR");
+    render();
+  </script>
+</body>
+</html>
